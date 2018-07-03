@@ -3,6 +3,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import datetime
+import json
 
 today = datetime.datetime.now().strftime('%d.%m.%Y')
 today_find = datetime.datetime.now().strftime('%d.')
@@ -24,6 +25,8 @@ theaters = [
     ['Open-Air-Kino Spandau', 'http://www.openairkino-spandau.de/spielplan', '.main .panel-heading h4', '.main .panel-heading p:contains(\''+ today_find +'\')'],
     ['Freiluftkino Hasenheide', 'http://freiluftkino-hasenheide.de/2018/index.php/programm', '.ic-list-events .event h2', '.ic-list-events .nextdate .ic-next-today']
 ]
+
+collection = []
 
 for th in theaters:
     if len(th) > 3:
@@ -56,9 +59,14 @@ for th in theaters:
 
         if title != '':
             screeningFile.write(th[0] + ',' + title + ','+ date + ','+ th[1]+'\n')
+            collection.append({'cinema': th[0], 'title': title, 'date': date, 'link': th[1]})
 
         print(th[0] + '...')
 
 screeningFile.close()
 browser.close()
+
+with open('screenings.json', 'w') as outfile:
+    json.dump(collection, outfile)
+
 print('Done!')

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta chartset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Was kommt im Freiluftkino?</title>
+    <style>
+     body {
+       margin: 3em;
+       background-image: url(assets/background.jpg);
+       background-color: #5d2285;
+       background-size: cover;
+       background-repeat: no-repeat;
+       background-blend-mode: overlay;
+       color: #bbb;
+       font-family: Monaco, monospace;
+     }
+     h2 {
+       text-transform: uppercase;
+     }
+     p {
+       font-size: 1.4em;
+     }
+     a {
+       font-size: 1.4em;
+       color: black;
+       background-color: #bbb;
+       text-decoration: none;
+       display: inline-block;
+       padding: .1em 0.4em;
+       transition: color 200ms ease; background-color 200ms ease;
+     }
+     a:hover,
+     a:active {
+       background-color: #222;
+       color: #bbb;
+       mix-blend-mode: difference;
+     }
+
+     a[href^="http://"]:not([href*="localhost:8080"]):after,
+     a[href^="https://"]:not([href*="localhost:8080"]):after{
+       content: " 🔗"
+     }
+
+     ul {
+       margin: 5em 0 0;
+       padding: 0;
+       display: flex;
+       justify-content: space-between;
+       flex-wrap: wrap;
+     }
+     li {
+       box-sizing: border-box;
+       margin-bottom: 5em;
+       list-style: none;
+       flex: 1 0 50%;
+       padding-right: 1em;
+     }
+     .credit {
+       font-size: 0.7em;
+       position: absolute;
+       bottom: .5em;
+       right: 0.5em;
+     }
+     .credit a {
+       font-size: 1em;
+       background-color: transparent;
+       color: #bbb;
+     }
+    </style>
+  </head>
+  <body>
+    <div class="burrito">
+      <h1>Was kommt im Freiluftkino?</h1>
+      <ul>
+
+      </ul>
+    </div>
+    <div class="credit"><a href="https://www.flickr.com/photos/cyzen/14806163730/in/photolist-oQzQNx-oymMNK-oQA6Vg-oNQdi5-oyntNJ-oymTHR-oynMjA-nHi21a-oyn5p1-oQRWw8-oynZcc-oQRAiH-oyn4eq-oynxmK-oymz8o-oynei2-oyndaF-oQP4P7-oynsD1-oQPRUU-oQRC2n-oyo1dR-cpwUFE-oynuom-oynsHC-oyniBk-oymSa8-oymVNo-oynpzd-oQRRDn-oyni6k-p7uUQ5-oFBszW-54oxhd-oyn1au-oyn4K4-oynvYq-oQA2ov-cxZtWG-cxZa6b-coKUYb-oQA5RH-6F1PMk-oQzNUc-oynbus-Wa7Yps-Wa7Wmu-WdtavX-Wmx8JQ-oQPGVb">Open Screening @ Freiluftkino INSEL im Cassiopeia</a> by <a href="https://www.flickr.com/photos/cyzen/">Mike Herbst</a> under <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC BY-NC 2.0</a></div>
+    <script>
+     function renderScreenings(data) {
+       console.log(data);
+       let burrito = document.querySelector('.burrito ul');
+
+       data.forEach(item => {
+         let elem = document.createElement('li');
+         elem.classList.add('item');
+         let link = document.createElement('a');
+         link.setAttribute('href', item.link);
+         link.innerHTML = item.cinema;
+         let movie = document.createElement('h2');
+         movie.innerHTML = item.title;
+         let date = document.createElement('p');
+         date.innerHTML = item.date;
+
+         elem.appendChild(link);
+         elem.appendChild(movie);
+         elem.appendChild(date);
+
+         burrito.appendChild(elem);
+       });
+     }
+
+     fetch('screenings.json').then(resp => resp.json()).then(data => renderScreenings(data));
+    </script>
+  </body>
+</html>
