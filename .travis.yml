@@ -1,18 +1,16 @@
 language: python
 
 python:
-  - "3.6"
+  - "3.6.3"
 
 branches:
   only:
     - master
 
-sudo: required
-
-addons:
-  chrome: stable
-
 install:
+  - wget http://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.6.3/
+  - export CHROME_BIN=chromium-browser
   - pip install selenium
 
 script:
