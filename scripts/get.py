@@ -14,7 +14,7 @@ options = Options()
 options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-gpu")
-browser = webdriver.Chrome(chrome_options=options)
+browser = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", chrome_options=options)
 
 theaters = [
     ['Freiluftkino Rehberge', 'http://freiluftkino-rehberge.de/', '.teasertable .teaserzelle .teasertitel', '.teasertable .teaserzelle .teasertag'],
