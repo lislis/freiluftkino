@@ -1,0 +1,12 @@
+language: python
+
+branches:
+  only:
+    - master
+
+script:
+  - bash ./scripts/cron.sh
+  - echo "ALL DONE \n\n"
+  
+after_success:
+  - bash ./scripts/deploy.sh
