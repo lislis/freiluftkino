@@ -12,6 +12,7 @@ screeningFile = open('data/screenings_'+today+'.csv', 'w')
 
 options = Options()
 options.add_argument("--headless")
+options.add_argument("--no-sandbox")
 browser = webdriver.Chrome(chrome_options=options)
 
 theaters = [
