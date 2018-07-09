@@ -19,6 +19,10 @@ install:
   - pip install selenium
 
 script:
+  - set -e
+  - whereis google-chrome-stable
+  - google-chrome-stable --version
+  - whereis chromedriver
   - bash ./scripts/cron.sh
   - echo "ALL DONE"
 
