@@ -7,6 +7,9 @@ branches:
   only:
     - master
 
+install:
+  - pip install selenium
+
 script:
   - bash ./scripts/cron.sh
   - echo "ALL DONE"
