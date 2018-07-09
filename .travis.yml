@@ -13,8 +13,8 @@ addons:
 install:
   - wget http://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d ~/chromedriver
+  - chmod +x ~/chromedriver
   - sudo mv -f ~/chromedriver /usr/local/bin/
-  - sudo chmod a+x /usr/local/bin/chromedriver
   - pip install selenium
 
 script:
