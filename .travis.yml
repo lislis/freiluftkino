@@ -1,5 +1,7 @@
 language: python
 
+sudo: required
+
 python:
   - "3.6.3"
 
@@ -13,9 +15,9 @@ addons:
 install:
   - wget https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d ~/chromedriver
-  - chmod a+x ~/chromedriver
-  - mv -f ~/chromedriver /usr/local/bin/chromedriver
-  - chown travis /usr/local/bin/chromedriver
+  - sudo chmod a+x ~/chromedriver
+  - sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
+  - sudo chown travis /usr/local/bin/chromedriver
   - pip install selenium
 
 script:
