@@ -11,10 +11,11 @@ addons:
   chrome: stable
 
 install:
-  - wget http://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip
+  - wget https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d ~/chromedriver
   - chmod a+x ~/chromedriver
-  - mv -f ~/chromedriver /home/travis/virtualenv/python3.6.3/bin/
+  - mv -f ~/chromedriver /user/local/bin/chromedriver
+  - chown travis /usr/local/bin/chromedriver
   - pip install selenium
 
 script:
